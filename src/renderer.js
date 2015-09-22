@@ -258,7 +258,7 @@ class Renderer {
 
     this.canvasContainer.height = this.height;
 
-    this.spectrum = (this.width / 10000);
+    this.spectrum = (this.width / CONFIG.Entities);
 
   };
 
