@@ -18,15 +18,7 @@ window.requestAnimFrame = (function () {
 
   renderer.run();
 
-  var x = 0;
-  var y = 0;
-
-  var width = renderer.width;
-  var height = renderer.height;
-
   for (var ii = 0; ii < CONFIG.Entities; ++ii) {
-    x = Math.floor(Math.random() * (renderer.width / 2) + 1);
-    y = Math.floor(Math.random() * (renderer.height / 2) + 1);
     renderer.addEntity(new Entity({
       id: ii,
       radius: 0,
