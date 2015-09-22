@@ -198,8 +198,6 @@ class Renderer {
       this.ctx.fillStyle = "white";
       this.ctx.beginPath();
       this.ctx.arc(this.entities[this.ii].x, this.entities[this.ii].y, this.entities[this.ii].radius, 0, Math.PI * 2, false);
-
-      // Fill the color to the arc that we just created
       this.ctx.fill();
 
     };
