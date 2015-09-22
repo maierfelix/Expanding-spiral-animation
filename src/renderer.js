@@ -49,7 +49,7 @@ class Renderer {
      * Radius Factor
      * @type {Number}
      */
-    this.radiusFactor = parseFloat((Math.random() / 200).toFixed(5));
+    this.radiusFactor = this.randomFactor();
 
     /**
      * Expand Mode
@@ -114,6 +114,16 @@ class Renderer {
   };
 
   /**
+   * Generate random factor
+   * @method randomFactor
+   */
+  randomFactor(entity) {
+
+    return (parseFloat((Math.random() / 200).toFixed(5)));
+
+  };
+
+  /**
    * Entity exists
    * @method entityExists
    */
@@ -159,15 +169,11 @@ class Renderer {
         this.mode = 0;
       }
 
-      if (!this.mode) {
-        this.entities[this.ii].angle -= 0.0002;
-      } else {
-        this.entities[this.ii].angle += 0.0002;
-      }
+      this.entities[this.ii].angle += this.mode ? 0.0002 : -0.0004;
 
       if (this.entities[this.ii].angle < 0) {
         this.mode = 1;
-        this.radiusFactor = parseFloat((Math.random() / 100).toFixed(4));
+        this.radiusFactor = this.randomFactor();
       }
 
       this.entities[this.ii].x = (this.width / 2) + (Math.PI * this.entities[this.ii].angle * this.ii) * Math.cos(this.entities[this.ii].angle * this.ii);
