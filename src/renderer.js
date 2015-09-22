@@ -49,7 +49,7 @@ class Renderer {
      * Radius Factor
      * @type {Number}
      */
-    this.radiusFactor = 0.00045;
+    this.radiusFactor = parseFloat((Math.random() / 200).toFixed(5));
 
     /**
      * Expand Mode
@@ -258,7 +258,7 @@ class Renderer {
 
     this.canvasContainer.height = this.height;
 
-    this.spectrum = (this.width / CONFIG.Entities);
+    this.spectrum = (this.width / CONFIG.Entities) / 2.5;
 
   };
 
