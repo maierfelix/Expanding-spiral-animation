@@ -14,6 +14,12 @@ window.requestAnimFrame = (function () {
 
   const root = a || b;
 
+  /** Shortcuts */
+  root.PI = Math.PI;
+  root.random = Math.random;
+  root.sin = Math.sin;
+  root.cos = Math.cos;
+
   let renderer = root.Renderer = new root.Renderer();
 
   renderer.run();
