@@ -16,24 +16,6 @@ class Entity {
     this.id = 0;
 
     /**
-     * Threshold
-     * @type {Number}
-     */
-    this.threshold = 0;
-
-    /**
-     * Width
-     * @type {Number}
-     */
-    this.width = 0;
-
-    /**
-     * Height
-     * @type {Number}
-     */
-    this.height = 0;
-
-    /**
      * X axis position
      * @type {Number}
      */
@@ -46,12 +28,6 @@ class Entity {
     this.y = 0;
 
     /**
-     * Moving speed
-     * @type {Number}
-     */
-    this.speed = 0;
-
-    /**
      * Radius
      * @type {Number}
      */
@@ -62,18 +38,6 @@ class Entity {
      * @type {Number}
      */
     this.angle = 0;
-
-    /**
-     * Alpha
-     * @type {String}
-     */
-    this.alpha = 0;
-
-    /**
-     * Pattern
-     * @type {String}
-     */
-    this.pattern = "";
 
     /**
      * Color

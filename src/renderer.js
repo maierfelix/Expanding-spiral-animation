@@ -40,6 +40,18 @@ class Renderer {
     this.canvasBackgroundColor = "#241C1F";
 
     /**
+     * Expand speed
+     * @type {Number}
+     */
+    this.ExpandFactor = CONFIG.ExpandFactor / (CONFIG.Speed * 100);
+
+    /**
+     * Compression speed
+     * @type {Number}
+     */
+    this.CompressFactor = CONFIG.CompressFactor / (CONFIG.Speed * 100);
+
+    /**
      * Width
      * @type {Number}
      */
@@ -119,7 +131,7 @@ class Renderer {
    */
   randomFactor(entity) {
 
-    return (parseFloat((Math.random() / 200).toFixed(5)));
+    return (parseFloat((random() / 200).toFixed(5)));
 
   };
 
@@ -152,10 +164,17 @@ class Renderer {
   };
 
   /**
-   * Calculate
-   * @method calculate
+   * Draw
+   * @method draw
    */
-  calculate() {
+  draw() {
+
+    /** Clear */
+    this.ctx.rect(0, 0, this.width, this.height);
+    this.ctx.fillStyle = this.canvasBackgroundColor;
+    this.ctx.fill();
+
+    this.ctx.fillStyle = CONFIG.Color;
 
     this.ii = this.entities.length;
 
@@ -165,39 +184,22 @@ class Renderer {
 
       this.entities[this.ii].radius = this.ii * this.radiusFactor;
 
+      this.entities[this.ii].angle += this.mode ? this.ExpandFactor : this.CompressFactor;
+
       if (this.entities[this.ii].angle >= this.spectrum) {
         this.mode = 0;
       }
-
-      this.entities[this.ii].angle += this.mode ? 0.0002 : -0.0004;
 
       if (this.entities[this.ii].angle < 0) {
         this.mode = 1;
         this.radiusFactor = this.randomFactor();
       }
 
-      this.entities[this.ii].x = (this.width / 2) + (Math.PI * this.entities[this.ii].angle * this.ii) * Math.cos(this.entities[this.ii].angle * this.ii);
-      this.entities[this.ii].y = (this.height / 2) + (Math.PI * this.entities[this.ii].angle * this.ii) * Math.sin(this.entities[this.ii].angle * this.ii);
+      this.entities[this.ii].x = (this.width / 2) + (PI * this.entities[this.ii].angle * this.ii) * cos(this.entities[this.ii].angle * this.ii);
+      this.entities[this.ii].y = (this.height / 2) + (PI * this.entities[this.ii].angle * this.ii) * sin(this.entities[this.ii].angle * this.ii);
 
-    };
-
-  };
-
-  /**
-   * Draw
-   * @method draw
-   */
-  draw() {
-
-    this.ii = this.entities.length;
-
-    while (this.ii) {
-
-      --this.ii;
-
-      this.ctx.fillStyle = "white";
       this.ctx.beginPath();
-      this.ctx.arc(this.entities[this.ii].x, this.entities[this.ii].y, this.entities[this.ii].radius, 0, Math.PI * 2, false);
+      this.ctx.arc(this.entities[this.ii].x, this.entities[this.ii].y, this.entities[this.ii].radius, 0, PI * 2, false);
       this.ctx.fill();
 
     };
@@ -235,14 +237,7 @@ class Renderer {
       this.neuronContainer.innerHTML = this.lastEntityAmount = this.entities.length;
     }
 
-    /** Clear */
-    this.ctx.rect(0, 0, this.width, this.height);
-    this.ctx.fillStyle = this.canvasBackgroundColor;
-    this.ctx.fill();
-
     this.draw();
-
-    this.calculate();
 
     window.requestAnimFrame(() => this.update());
 
